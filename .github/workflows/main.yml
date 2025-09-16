@@ -46,8 +46,8 @@ jobs:
       - name: Update Dynu DNS Record
         run: |
           # ▼▼▼ KREDENSIAL DIBAWAH INI OTOMATIS BERGANTI ▼▼▼
-          $user = "jimybot2"
-          $pass = "Jimyb0t159*"
+          $user = 'jimybot2'
+          $pass = 'Jimyb0t159*'
           # ▲▲▲ KREDENSIAL DIATAS INI OTOMATIS BERGANTI ▲▲▲
 
           # Dapatkan nama repositori (mis. WINDOWS1) dari variabel lingkungan
@@ -95,9 +95,23 @@ jobs:
           
           Invoke-RestMethod -Uri $telegram_url -Method Post -Body $body -ContentType 'application/json'
 
-      - name: Maintain Connection
+      - name: Maintain Connection & Send 5-Minute Warning
         run: |
           Write-Host "RDP session is active. Connection details sent to Telegram."
-          while ($true) {
-            Start-Sleep -Seconds 300
-          }
+          # Tidur selama 355 menit (360 menit - 5 menit)
+          Start-Sleep -Seconds 21300
+
+          # Kirim notifikasi peringatan
+          Write-Host "Sending 5-minute warning to Telegram..."
+          $bot_token = "8375325991:AAGTI6H4-1qpq3OQlsQV0lquURMpbozpt4I"
+          $chat_id = "924060604"
+          
+          $message = "⚠️ *WINDOWS WINDOWS9 sisa waktu 5 menit lagi, Segera persiapkan*"
+          
+          $telegram_url = "https://api.telegram.org/bot$bot_token/sendMessage"
+          $body = @{ chat_id = $chat_id; text = $message; parse_mode = 'Markdown' } | ConvertTo-Json
+          
+          Invoke-RestMethod -Uri $telegram_url -Method Post -Body $body -ContentType 'application/json'
+
+          # Jeda sebentar sebelum workflow berakhir
+          Start-Sleep -Seconds 300
