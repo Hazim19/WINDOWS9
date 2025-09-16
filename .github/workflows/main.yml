@@ -45,10 +45,10 @@ jobs:
       
       - name: Update Dynu DNS Record
         run: |
-          # ▼▼▼ MASUKKAN USER DAN PASS ANDA DI SINI ▼▼▼
-          $user = "jimybot"
+          # ▼▼▼ KREDENSIAL DIBAWAH INI OTOMATIS BERGANTI ▼▼▼
+          $user = "jimybot2"
           $pass = "Jimyb0t159*"
-          # ▲▲▲ MASUKKAN USER DAN PASS ANDA DI ATAS ▲▲▲
+          # ▲▲▲ KREDENSIAL DIATAS INI OTOMATIS BERGANTI ▲▲▲
 
           # Dapatkan nama repositori (mis. WINDOWS1) dari variabel lingkungan
           $repo_name = "${{ github.event.repository.name }}"
